@@ -1,0 +1,15 @@
+{
+  "name": "codewars-solutions",
+  "version": "1.0.0",
+  "description": "http://www.codewars.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linx4200/codewars-solutions.git"
+  },
+  "author": "xinranliu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linx4200/codewars-solutions/issues"
+  },
+  "homepage": "https://github.com/linx4200/codewars-solutions#readme"
+}
