@@ -1,5 +1,7 @@
 // https://www.codewars.com/kata/57680d0128ed87c94f000bfd/
 
+// [unfinished] Passed: 49 Failed: 3
+
 function checkWord( board, word ){
   let idx = 0
   let i = 0
