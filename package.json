@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/linx4200/codewars-solutions/issues"
   },
-  "homepage": "https://github.com/linx4200/codewars-solutions#readme"
+  "homepage": "https://github.com/linx4200/codewars-solutions#readme",
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
 }

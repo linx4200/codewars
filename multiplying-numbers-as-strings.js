@@ -1,5 +1,7 @@
 // https://www.codewars.com/kata/55911ef14065454c75000062/
 
+const assert = require('chai').assert
+
 // 这题要注意超出精读范围的数，不能简单的相乘
 function multiply(a, b) {
   const aa = a.split('').reverse()
@@ -24,8 +26,8 @@ function multiply(a, b) {
   return res.reverse().join('').replace(/^0+(?=\d)/g, '')
 }
 
-multiply('2', '3') // '6'
-multiply('2', '0') // '0'
-multiply('20000', '0') // '0'
-multiply('123321', '9088') // '1120741248'
-multiply('58608473622772837728372827', '7586374672263726736374') // '444625839871840560024489175424316205566214109298'
+assert.equal(multiply('2', '3'), '6')
+assert.equal(multiply('2', '0'), '0')
+assert.equal(multiply('20000', '0'), '0')
+assert.equal(multiply('123321', '9088'), '1120741248')
+assert.equal(multiply('58608473622772837728372827', '7586374672263726736374'), '444625839871840560024489175424316205566214109298')
