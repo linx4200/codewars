@@ -1,12 +1,19 @@
 // https://www.codewars.com/kata/524ada2bdc2121b521000353/
 
+// info:
+// https://github.com/pcorey/the-captains-distance-request
+
+// Run test:
+// npm-run mocha ../test/the-captains-distance-request.js
+
+
 const EARTH_RADIUS = 6378137.0
 
 function getRad(d){
   return d * Math.PI / 180.0
 }
 
-function conversion(coord) {
+function toDecimal(coord) {
   return coord
           .trim()
           .replace(/(\d{1,2})[°′″]\s?/g, (match, p1, offset) => {
@@ -51,15 +58,20 @@ function getFlatternDistance (lat1,lng1,lat2,lng2){
   return d*(1 + fl*(h1*sf*(1-sg) - h2*(1-sf)*sg))
 }
 
-
-function distance(coord1, coord2) {
-  const [lat1, lng1] = coord1.split(',').map(conversion)
-  const [lat2, lng2] = coord2.split(',').map(conversion)
-  const dis = getFlatternDistance(lat1, lng1, lat2, lng2)
-  return dis
-
+function splitOnLatLon (coord) {
+  return coord.split(',').map(String.prototype.trim);
 }
 
-distance('48° 12′ 30″ N, 16° 22′ 23″ E', '23° 33′ 0″ S, 46° 38′ 0″ W')  // Returns 10130
-distance('48° 12′ 30″ N, 16° 22′ 23″ E', '48° 12′ 30″ N, 16° 22′ 23″ E') // 0
-distance('48° 12′ 30″ N, 16° 22′ 23″ E', '58° 18′ 0″ N, 134° 25′ 0″ W')  // Returns 7870
+function distance(coord1, coord2) {
+  const [lat1, lng1] = coord1.split(',').map(toDecimal)
+  const [lat2, lng2] = coord2.split(',').map(toDecimal)
+  const dis = getFlatternDistance(lat1, lng1, lat2, lng2)
+  return dis
+}
+
+exports.distance = distance
+exports.splitOnLatLon = splitOnLatLon
+
+// distance('48° 12′ 30″ N, 16° 22′ 23″ E', '23° 33′ 0″ S, 46° 38′ 0″ W')  // Returns 10130
+// distance('48° 12′ 30″ N, 16° 22′ 23″ E', '48° 12′ 30″ N, 16° 22′ 23″ E') // 0
+// distance('48° 12′ 30″ N, 16° 22′ 23″ E', '58° 18′ 0″ N, 134° 25′ 0″ W')  // Returns 7870
