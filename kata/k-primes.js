@@ -21,6 +21,7 @@ function primes(start, end) {
     for (let j = 2; j <= Math.sqrt(i); j++) {
       if (i % j === 0) {
         flag = false
+        break
       }
     }
     if (flag) {
@@ -31,9 +32,10 @@ function primes(start, end) {
 }
 
 function countKprimes(k, start, end) {
-  const primeNums = primes(2, end)
+  const primeNums = primes(2, (end / Math.pow(2, k - 1)))
 
   let i = 2
+  const ll = primeNums.length
   const map = []
   map[1] = primeNums
 
@@ -42,24 +44,28 @@ function countKprimes(k, start, end) {
 
     const last = map[i - 1]
     const l = last.length
-    const ll = primeNums.length
 
     for(let ii = 0; ii < l; ii++) {
+      const max = Math.ceil(end / Math.pow(2, k - i))
       for (let jj = 0; jj < ll; jj++) {
         const prod = primeNums[jj] * last[ii]
-        if (prod <= end) {
-          if (i === k && prod >= start) {
+        if (i === k) {
+          if (prod <= end && prod >= start) {
             tmp.push(prod)
-          } else if (i !== k) {
-            tmp.push(prod)
+          } else if (prod > end) {
+            break
           }
-        }
-        if (prod > end) {
-          break
+        } else {
+          // 剪枝
+          if (prod <= max) {
+            tmp.push(prod)
+          } else {
+            break
+          }
         }
       }
     }
-    map[i] = unique(tmp).sort((a, b) => (a - b))
+    map[i] = i === k ? unique(tmp).sort((a, b) => (a - b)) : unique(tmp)
     i++
   }
   return map[k]
