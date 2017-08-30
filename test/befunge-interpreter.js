@@ -1,9 +1,9 @@
 const expect = require('chai').expect
 const { form2DPlane, operations, interpret } = require('../kata/befunge-interpreter')
 
-const test1 = '>987v>.v\nv456<  :\n>321 ^ _@';
-const test2 = '>25*"!dlroW olleH":v\n                v:,_@\n                >  ^';
-const test3 = '08>:1-:v v *_$.@ \n  ^    _$>\\:^';
+const test1 = '>987v>.v\nv456<  :\n>321 ^ _@'
+const test2 = '>25*"!dlroW olleH":v\n                v:,_@\n                >  ^'
+const test3 = '08>:1-:v v *_$.@ \n  ^    _$>\\:^'
 const test4 = '01->1# +# :# 0# g# ,# :# 5# 8# *# 4# +# -# _@'
 const test5 = 'v@.<\n >1^\n>?<^\n >2^'
 
