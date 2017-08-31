@@ -111,8 +111,33 @@ function countKprimes(k, start, nd) {
   return res
 }
 
-function puzzle(s) {
 
+/**
+ * Given positive integers s and a, b, c where a is 1-prime, b 3-prime, c 7-prime
+ * return the number of solutions of a + b + c = s
+ * 
+ * @param {number} s 
+ * @returns {number}
+ */
+function puzzle(s) {
+  let res = 0
+  const aa = countKprimes(1, 2, s)
+  const bb = countKprimes(3, 2, s)
+  const cc = countKprimes(7, 2, s)
+  const al = aa.length
+  const bl = bb.length
+  const cl = cc.length
+
+  for (let i = 0; i < al; i++) {
+    for (let j = 0; j < bl; j++) {
+      for (let k = 0; k < cl; k++) {
+        if (aa[i] + bb[j] + cc[k] === s) {
+          res++
+        }
+      }
+    }
+  }
+  return res
 }
 
 exports.countKprimes = countKprimes
